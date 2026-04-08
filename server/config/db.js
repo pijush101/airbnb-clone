@@ -6,7 +6,6 @@ const connectWithDb = () => {
     .catch((err) => {
         console.log('DB is failed');
         console.log(err);
-        process.exit(1)
     });
 };
 
