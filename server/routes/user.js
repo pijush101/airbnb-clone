@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const upload = multer({ dest: 'temp/' });
+const os = require('os');
+const upload = multer({ dest: os.tmpdir() });
 const {
     register,
     login,
