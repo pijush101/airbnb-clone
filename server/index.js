@@ -17,6 +17,10 @@ cloudinary.config({
 });
 
 const app = express();
+
+// Required for Vercel to trust the HTTPS proxy so secure cookies work
+app.set("trust proxy", 1); 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -26,7 +30,7 @@ app.use(
 app.use(
     cookieSession({
         name: "session",
-        keys: [process.env.COOKIE_SECRET],
+        keys: [process.env.COOKIE_SECRET || "default_secret_key"],
         maxAge: 24 * 60 * 60 * 1000,
         secure: process.env.NODE_ENV === "production",
         httpOnly: true,
